@@ -31,11 +31,11 @@ else:
 
 def database():
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME"),
-        port=int(os.getenv("DB_PORT"))
+       DB_HOST=sql12.freesqldatabase.com
+       DB_USER=sql12829421
+       DB_PASSWORD=dyjfhuhwwg
+       DB_NAME=sql12829421
+       DB_PORT=3306
     )
 
 # Pydantic models for request bodies
