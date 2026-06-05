@@ -31,17 +31,31 @@ else:
 
 def database():
     return mysql.connector.connect(
-       DB_HOST=sql12.freesqldatabase.com
-       DB_USER=sql12829421
-       DB_PASSWORD=dyjfhuhwwg
-       DB_NAME=sql12829421
-       DB_PORT=3306
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT"))
     )
 
 # Pydantic models for request bodies
 class ChatRequest(BaseModel):
     message: str
     username: str = None
+
+
+@app.get("/dbtest")
+def dbtest():
+    try:
+        db = database()
+        cursor = db.cursor()
+        cursor.execute("SELECT 1")
+        result = cursor.fetchone()
+        cursor.close()
+        db.close()
+        return {"status": "connected", "result": result}
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
