@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pymysql
+mysql-connector-python
+jinja2
+itsdangerous
+twilio
+pydantic
+google-genai
+python-dotenv
